@@ -1,0 +1,109 @@
+/* Thiết lập font chữ và lề cho toàn bộ trang */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px; /* Tạo khoảng cách xung quanh trang */
+    background-color: #f8f8f8; /* Nền nhẹ nhàng */
+    color: #333; /* Màu chữ */
+}
+
+h1 {
+    text-align: center;
+    color: #007bff; /* Màu xanh dương nổi bật */
+    margin-bottom: 25px;
+}
+table {
+    width: 90%; /* Chiếm 90% chiều rộng màn hình */
+    margin: 0 auto; /* Căn giữa bảng */
+    border-collapse: collapse; /* Gộp các đường viền lại */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+    background-color: #ffffff;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+input[type="number"], select {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Quan trọng để padding không làm tăng chiều rộng */
+    text-align: center;
+    font-size: 1em;
+}
+/* Định dạng ô TỔNG CỘNG */
+.total-label {
+    text-align: right;
+    font-weight: bold;
+    background-color: #e0f7fa; /* Màu nền nhạt */
+    padding-right: 20px;
+}
+
+/* Định dạng kết quả tổng tiền */
+#grandTotal {
+    font-weight: bold;
+    background-color: #b2ebf2; /* Màu nền nổi bật hơn */
+    font-size: 1.5em;
+    color: #004d40;
+}
+/* Media Query: Áp dụng khi chiều rộng màn hình nhỏ hơn 600px (thường là điện thoại) */
+@media screen and (max-width: 600px) {
+    
+    table {
+        width: 100%; /* Chiếm toàn bộ chiều rộng màn hình điện thoại */
+        display: block; /* Quan trọng: Thay đổi cách hiển thị của bảng */
+        overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+    }
+
+    /* Đảm bảo các hàng và ô vẫn hiển thị đúng */
+    thead, tbody, th, td, tr {
+        display: block; /* Hiển thị các phần tử bảng dưới dạng khối */
+    }
+
+    /* Ẩn tiêu đề (th) để tiết kiệm không gian */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    /* Định dạng lại các ô dữ liệu (td) trên điện thoại */
+    td {
+        /* Bắt đầu hiển thị dữ liệu theo kiểu "Tên tiêu đề: Giá trị" */
+        border: none;
+        position: relative;
+        padding-left: 50%; /* Dành không gian cho nhãn */
+        text-align: left;
+    }
+    
+    /* Sử dụng thuộc tính data-label (không cần phải làm ở đây) hoặc dùng :before
+       Cách đơn giản nhất là đảm bảo các cột vẫn đủ rộng
+    */
+    
+    /* Thiết lập chiều rộng cho các input/select trên điện thoại */
+    input[type="number"], select {
+        width: 100%;
+        margin-top: 5px;
+    }
+    
+    /* Điều chỉnh Tổng cộng */
+    tfoot tr td {
+        display: block; /* Mỗi ô một dòng */
+        text-align: right;
+    }
+    
+    .total-label {
+        background-color: #f8f8f8;
+        padding-right: 0;
+    }
+}
