@@ -1,109 +1,53 @@
-/* Thiết lập font chữ và lề cho toàn bộ trang */
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px; /* Tạo khoảng cách xung quanh trang */
-    background-color: #f8f8f8; /* Nền nhẹ nhàng */
-    color: #333; /* Màu chữ */
-}
-
-h1 {
-    text-align: center;
-    color: #007bff; /* Màu xanh dương nổi bật */
-    margin-bottom: 25px;
-}
-table {
-    width: 90%; /* Chiếm 90% chiều rộng màn hình */
-    margin: 0 auto; /* Căn giữa bảng */
-    border-collapse: collapse; /* Gộp các đường viền lại */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
-    background-color: #ffffff;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px 8px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-input[type="number"], select {
-    width: 90%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Quan trọng để padding không làm tăng chiều rộng */
-    text-align: center;
-    font-size: 1em;
-}
-/* Định dạng ô TỔNG CỘNG */
-.total-label {
-    text-align: right;
-    font-weight: bold;
-    background-color: #e0f7fa; /* Màu nền nhạt */
-    padding-right: 20px;
-}
-
-/* Định dạng kết quả tổng tiền */
-#grandTotal {
-    font-weight: bold;
-    background-color: #b2ebf2; /* Màu nền nổi bật hơn */
-    font-size: 1.5em;
-    color: #004d40;
-}
-/* Media Query: Áp dụng khi chiều rộng màn hình nhỏ hơn 600px (thường là điện thoại) */
-@media screen and (max-width: 600px) {
-    
-    table {
-        width: 100%; /* Chiếm toàn bộ chiều rộng màn hình điện thoại */
-        display: block; /* Quan trọng: Thay đổi cách hiển thị của bảng */
-        overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; padding: 20px; }
+.container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+h1 { color: #2c3e50; text-align: center; }
+.section { margin-bottom: 8px; padding: 8px 0; border-bottom: 1px solid #eee; }
+label { display: block; font-weight: bold; margin-bottom: 3px; margin-top: 5px; }
+select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+.toggle-area { background: #e8f4fd; border-radius: 5px; display: flex; align-items: center; justify-content: space-between; padding: 8px; }
+.price-detail { margin-top: 5px; padding: 5px 8px; background: #f0f8ff; border-left: 4px solid #3498db; font-size: 0.9em; color: #2c3e50; }
+.price-detail span { font-weight: bold; color: #e74c3c; }
+.total-display { text-align: center; background: #27ae60; color: white; padding: 20px; border-radius: 8px; margin-top: 15px; }
+#finalAmount { font-size: 2em; font-weight: bold; margin: 0; }
+/* Tối ưu cho màn hình điện thoại */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        margin: 10px;
+        width: auto;
     }
 
-    /* Đảm bảo các hàng và ô vẫn hiển thị đúng */
-    thead, tbody, th, td, tr {
-        display: block; /* Hiển thị các phần tử bảng dưới dạng khối */
+    h1 { font-size: 1.5rem; }
+
+    /* Làm các ô chọn to ra để dễ bấm bằng tay */
+    select, input[type="number"] {
+        height: 50px; 
+        font-size: 16px; /* Tránh bị zoom trên iPhone khi bấm vào */
     }
 
-    /* Ẩn tiêu đề (th) để tiết kiệm không gian */
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+    /* Biến danh sách checkbox thành các hàng lớn dễ tích */
+    #otherServices div {
+        background: #f9f9f9;
+        padding: 12px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
     }
-    
-    /* Định dạng lại các ô dữ liệu (td) trên điện thoại */
-    td {
-        /* Bắt đầu hiển thị dữ liệu theo kiểu "Tên tiêu đề: Giá trị" */
-        border: none;
-        position: relative;
-        padding-left: 50%; /* Dành không gian cho nhãn */
-        text-align: left;
+
+    input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+        margin-right: 12px;
     }
-    
-    /* Sử dụng thuộc tính data-label (không cần phải làm ở đây) hoặc dùng :before
-       Cách đơn giản nhất là đảm bảo các cột vẫn đủ rộng
-    */
-    
-    /* Thiết lập chiều rộng cho các input/select trên điện thoại */
-    input[type="number"], select {
-        width: 100%;
-        margin-top: 5px;
-    }
-    
-    /* Điều chỉnh Tổng cộng */
-    tfoot tr td {
-        display: block; /* Mỗi ô một dòng */
-        text-align: right;
-    }
-    
-    .total-label {
-        background-color: #f8f8f8;
-        padding-right: 0;
+
+    /* Cố định tổng tiền ở dưới cùng màn hình (Sticky Footer) */
+    .total-display {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 30px;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
     }
 }
