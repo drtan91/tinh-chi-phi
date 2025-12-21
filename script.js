@@ -253,10 +253,13 @@ function init() {
     // 3. Khi thay đổi Phẫu thuật -> Cập nhật lại danh sách phòng
     surgerySelect.addEventListener('change', updateRoomList);
 
-    // 4. Các sự kiện tính toán khác (như cũ)
-    [roomSelect, document.getElementById('stayDays'), document.getElementById('bhytCheck'), otherDiv].forEach(el => {
-        el.addEventListener('change', calculate);
-        el.addEventListener('input', calculate);
+    // 4. Các sự kiện tính toán khác
+    roomSelect.addEventListener('change', calculate);
+    document.getElementById('bhytCheck').addEventListener('change', calculate);
+    otherDiv.addEventListener('change', calculate); // delegation for other-item checkboxes
+    // radio buttons for stay days
+    document.querySelectorAll('input[name="stayDays"]').forEach(r => {
+        r.addEventListener('change', calculate);
     });
     // Tạo danh sách checkbox cho chi phí khác
     DATA.others.forEach((item, index) => {
@@ -273,7 +276,8 @@ function init() {
 function calculate() {
     const isBHYT = document.getElementById('bhytCheck').checked;
     const type = isBHYT ? 'bhyt' : 'full';
-    const days = parseInt(document.getElementById('stayDays').value) || 0;
+    const daysRadio = document.querySelector('input[name="stayDays"]:checked');
+    const days = daysRadio ? parseInt(daysRadio.value) : 0;
 
     // Lấy phẫu thuật đang chọn
     const surgeryIndex = surgerySelect.value;
