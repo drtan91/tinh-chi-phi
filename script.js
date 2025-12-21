@@ -213,7 +213,8 @@ const DATA = {
         { name: "Sàng lọc sơ sinh", full: 540000, bhyt: 540000 },
         { name: "Thuốc khác", full: 540000, bhyt: 480000 },
         { name: "Gói đồ đi sinh", full: 476000, bhyt: 476000 },
-        { name: "Vệ sinh, Thay băng, Tắm bé", full: 620000, bhyt: 480000 }
+        { name: "Vệ sinh, Thay băng, Tắm bé", full: 620000, bhyt: 480000 },
+        { name: "Chiếu plasma thêm", full: 290000, bhyt: 290000 }
     ]
 };
 
@@ -253,17 +254,33 @@ function init() {
     // 3. Khi thay đổi Phẫu thuật -> Cập nhật lại danh sách phòng
     surgerySelect.addEventListener('change', updateRoomList);
 
-    // 4. Các sự kiện tính toán khác (như cũ)
-    [roomSelect, document.getElementById('stayDays'), document.getElementById('bhytCheck'), otherDiv].forEach(el => {
-        el.addEventListener('change', calculate);
-        el.addEventListener('input', calculate);
+    // 4. Các sự kiện tính toán khác
+    roomSelect.addEventListener('change', calculate);
+    otherDiv.addEventListener('change', calculate);
+    // BHYT button
+    document.getElementById('bhytBtn').addEventListener('click', function() {
+        this.classList.toggle('active');
+        calculate();
     });
-    // Tạo danh sách checkbox cho chi phí khác
+    // Stay days buttons
+    document.querySelectorAll('.stay-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.stay-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            calculate();
+        });
+    });
+    // Tạo danh sách button cho chi phí khác
     DATA.others.forEach((item, index) => {
-        otherDiv.innerHTML += `
-            <div style="margin-bottom: 5px;">
-                <input type="checkbox" class="other-item" value="${index}" checked> ${item.name}
-            </div>`;
+        const btn = document.createElement('button');
+        btn.className = 'other-btn active';
+        btn.setAttribute('data-index', index);
+        btn.textContent = item.name;
+        btn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            calculate();
+        });
+        otherDiv.appendChild(btn);
     });
 
     calculate(); // Tính lần đầu
@@ -271,9 +288,10 @@ function init() {
 
 // 3. Hàm tính toán theo công thức Excel
 function calculate() {
-    const isBHYT = document.getElementById('bhytCheck').checked;
+    const isBHYT = document.getElementById('bhytBtn').classList.contains('active');
     const type = isBHYT ? 'bhyt' : 'full';
-    const days = parseInt(document.getElementById('stayDays').value) || 0;
+    const activeBtn = document.querySelector('.stay-btn.active');
+    const days = activeBtn ? parseInt(activeBtn.getAttribute('data-days')) : 0;
 
     // Lấy phẫu thuật đang chọn
     const surgeryIndex = surgerySelect.value;
@@ -287,10 +305,13 @@ function calculate() {
     const roomPriceDaily = selectedRoom[type];
     const roomPriceTotal = roomPriceDaily * days;
 
-    // Tính chi phí khác (giữ nguyên)
+    // Tính chi phí khác (từ button active)
     let otherTotal = 0;
-    document.querySelectorAll('.other-item').forEach(cb => {
-        if (cb.checked) otherTotal += DATA.others[cb.value][type];
+    document.querySelectorAll('.other-btn').forEach(btn => {
+        if (btn.classList.contains('active')) {
+            const index = btn.getAttribute('data-index');
+            otherTotal += DATA.others[index][type];
+        }
     });
 
     // Cập nhật hiển thị giá chi tiết
