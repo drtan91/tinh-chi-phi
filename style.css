@@ -10,23 +10,28 @@ h1 { color: #2c3e50; text-align: center; }
     margin: 6px 0 12px;
     font-size: 1.5rem; /* tăng gấp đôi so với 0.95rem */
 }
-.section { margin-bottom: 8px; padding: 8px 0; border-bottom: 1px solid #eee; }
-label { display: block; font-weight: bold; margin-bottom: 3px; margin-top: 5px; }
+.section { margin-bottom: 4px; padding: 4px 0; border-bottom: 1px solid #eee; }
+label { display: block; font-weight: bold; margin-bottom: 2px; margin-top: 2px; }
 select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
 .toggle-area { background: #e8f4fd; border-radius: 5px; display: flex; align-items: center; justify-content: space-between; padding: 8px; }
-/* Stay days radio group */
-.stay-days { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
-.stay-days input[type="radio"] { display: none; }
-.stay-days label.option { display: inline-block; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
-.stay-days input[type="radio"]:checked + label.option { background: #3498db; color: #fff; border-color: #3498db; }
-
-/* Tối ưu toggle-area (compact) */
-.toggle-area label { margin: 0; font-weight: 600; }
-.toggle-area input[type="checkbox"] { width: 22px; height: 22px; transform: scale(1.05); margin-left: 8px; }
+/* Stay days button group */
+.stay-days { display: flex; gap: 8px; margin-top: 8px; margin-bottom: 8px; }
+.stay-btn { flex: 1; padding: 10px 8px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+.stay-btn:hover { border-color: #3498db; background: #f0f8ff; }
+.stay-btn.active { background: #3498db; color: white; border-color: #3498db; }
+/* BHYT button */
+.bhyt-btn { width: 100%; padding: 12px 10px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; margin-top: 10px; }
+.bhyt-btn:hover { border-color: #27ae60; background: #f0f8ff; }
+.bhyt-btn.active { background: #27ae60; color: white; border-color: #27ae60; }
+/* Other services button group */
+#otherServices { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.other-btn { padding: 10px 8px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.85rem; transition: all 0.2s; text-align: left; }
+.other-btn:hover { border-color: #3498db; background: #f0f8ff; }
+.other-btn.active { background: #3498db; color: white; border-color: #3498db; }
 .price-detail { margin-top: 5px; padding: 5px 8px; background: #f0f8ff; border-left: 4px solid #3498db; font-size: 0.9em; color: #2c3e50; }
 .price-detail span { font-weight: bold; color: #e74c3c; }
-.total-display { text-align: center; background: #27ae60; color: white; padding: 20px; border-radius: 8px; margin-top: 15px; }
-#finalAmount { font-size: 2em; font-weight: bold; margin: 0; }
+.total-display { text-align: center; background: #27ae60; color: white; padding: 14px 8px; border-radius: 8px; margin-top: 10px; width: 90%; margin-left: auto; margin-right: auto; }
+#finalAmount { font-size: 1.6em; font-weight: bold; margin: 0; }
 /* Tối ưu cho màn hình điện thoại */
 @media (max-width: 480px) {
     /* Edge-to-edge on small screens */
