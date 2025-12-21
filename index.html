@@ -11,11 +11,6 @@
         <h1>Dự Toán Chi Phí Đi Sinh</h1>
         <p class="doctor-info">BS. Phạm Nhật Tân - 0984.222.125</p>
 
-        <div class="section toggle-area">
-            <label for="bhytCheck">Sử dụng BHYT (80%):</label>
-            <input type="checkbox" id="bhytCheck">
-        </div>
-
         <div class="section">
             <label>Loại phẫu thuật:</label>
             <select id="surgerySelect"></select>
@@ -25,16 +20,10 @@
         <div class="section">
             <label>Loại phòng sau sinh:</label>
             <select id="roomSelect"></select>
-            <label>Số ngày nằm viện:</label>
-            <div class="stay-days" role="radiogroup" aria-label="Số ngày nằm viện">
-                <input type="radio" id="stay3" name="stayDays" value="3">
-                <label for="stay3" class="option">3 ngày</label>
-
-                <input type="radio" id="stay4" name="stayDays" value="4">
-                <label for="stay4" class="option">4 ngày</label>
-
-                <input type="radio" id="stay5" name="stayDays" value="5" checked>
-                <label for="stay5" class="option">5 ngày</label>
+            <div class="stay-days" id="stayDaysGroup">
+                <button class="stay-btn" data-days="3">3 ngày</button>
+                <button class="stay-btn" data-days="4">4 ngày</button>
+                <button class="stay-btn active" data-days="5">5 ngày</button>
             </div>
             <div class="price-detail">Giá phòng (mỗi ngày): <span id="roomPriceDaily">0 VND</span></div>
             <div class="price-detail">Tổng giá phòng: <span id="roomPriceTotal">0 VND</span></div>
@@ -44,6 +33,7 @@
             <h3>Chi phí dịch vụ khác</h3>
             <div id="otherServices"></div>
             <div class="price-detail">Tổng chi phí khác: <span id="otherTotal">0 VND</span></div>
+            <button class="bhyt-btn" id="bhytBtn">Sử dụng BHYT (80%)</button>
         </div>
 
         <div class="total-display">
