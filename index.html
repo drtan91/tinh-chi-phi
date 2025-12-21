@@ -26,7 +26,16 @@
             <label>Loại phòng sau sinh:</label>
             <select id="roomSelect"></select>
             <label>Số ngày nằm viện:</label>
-            <input type="number" id="stayDays" value="5" min="1">
+            <div class="stay-days" role="radiogroup" aria-label="Số ngày nằm viện">
+                <input type="radio" id="stay3" name="stayDays" value="3">
+                <label for="stay3" class="option">3 ngày</label>
+
+                <input type="radio" id="stay4" name="stayDays" value="4">
+                <label for="stay4" class="option">4 ngày</label>
+
+                <input type="radio" id="stay5" name="stayDays" value="5" checked>
+                <label for="stay5" class="option">5 ngày</label>
+            </div>
             <div class="price-detail">Giá phòng (mỗi ngày): <span id="roomPriceDaily">0 VND</span></div>
             <div class="price-detail">Tổng giá phòng: <span id="roomPriceTotal">0 VND</span></div>
         </div>
