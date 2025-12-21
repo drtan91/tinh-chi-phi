@@ -5,15 +5,24 @@ h1 { color: #2c3e50; text-align: center; }
 /* Thông tin bác sĩ dưới tiêu đề */
 .doctor-info {
     color: #b22222; /* đỏ đậm nhưng dịu mắt (firebrick) */
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     margin: 6px 0 12px;
-    font-size: 1.9rem; /* tăng gấp đôi so với 0.95rem */
+    font-size: 1.5rem; /* tăng gấp đôi so với 0.95rem */
 }
 .section { margin-bottom: 8px; padding: 8px 0; border-bottom: 1px solid #eee; }
 label { display: block; font-weight: bold; margin-bottom: 3px; margin-top: 5px; }
 select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
 .toggle-area { background: #e8f4fd; border-radius: 5px; display: flex; align-items: center; justify-content: space-between; padding: 8px; }
+/* Stay days radio group */
+.stay-days { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+.stay-days input[type="radio"] { display: none; }
+.stay-days label.option { display: inline-block; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+.stay-days input[type="radio"]:checked + label.option { background: #3498db; color: #fff; border-color: #3498db; }
+
+/* Tối ưu toggle-area (compact) */
+.toggle-area label { margin: 0; font-weight: 600; }
+.toggle-area input[type="checkbox"] { width: 22px; height: 22px; transform: scale(1.05); margin-left: 8px; }
 .price-detail { margin-top: 5px; padding: 5px 8px; background: #f0f8ff; border-left: 4px solid #3498db; font-size: 0.9em; color: #2c3e50; }
 .price-detail span { font-weight: bold; color: #e74c3c; }
 .total-display { text-align: center; background: #27ae60; color: white; padding: 20px; border-radius: 8px; margin-top: 15px; }
@@ -23,7 +32,7 @@ select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #dd
     /* Edge-to-edge on small screens */
     .container {
         padding: 15px;
-        margin: 0;
+        margin: 1px;
         width: 100%;
         max-width: 100%;
         border-radius: 0;
